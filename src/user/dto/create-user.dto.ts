@@ -1,6 +1,5 @@
 import { User } from '../entities/user.entity';
 import {
-  isEmail,
   IsEmail,
   IsString,
   Matches,
