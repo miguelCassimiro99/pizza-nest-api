@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import { UserPayload } from './models/UserPayload';
-import { UserToken } from './models/UserToken';
+import { UserTokenResponse } from './models/UserTokenResponse';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  login(user: User): UserToken {
+  login(user: User): UserTokenResponse {
     //? this case implemented needs to converts the user passed into a JWT
     const payload: UserPayload = {
       sub: user.id,
@@ -25,6 +25,8 @@ export class AuthService {
 
     return {
       access_token: jwtToken,
+      email: user.email,
+      name: user.name,
     };
   }
 
